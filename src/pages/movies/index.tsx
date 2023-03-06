@@ -16,7 +16,7 @@ const Movies: NextPage = () => {
   const service = useAppService()
   const router = useRouter()
 
-  const { data: movies } = useQuery(['now-playing-movies', router.query], () =>
+  const { data: movies } = useQuery(['now-playing-movies'], () =>
     service.movie.getNowPlayingMovies()
   )
 
@@ -56,7 +56,7 @@ const Movies: NextPage = () => {
 
       <div>
         {selectedTab === Tab.NowPlaying && (
-          <NowPlayingMovies movies={movies.results} />
+          <NowPlayingMovies movies={movies?.results} />
         )}
       </div>
     </div>
