@@ -1,0 +1,9 @@
+@import 'common';
+
+.overview {
+  @include line-clamp(5);
+  
+  @media (min-width: theme('screens.lg')) {
+    @include line-clamp(10);
+  }
+}

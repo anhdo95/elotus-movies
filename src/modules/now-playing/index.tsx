@@ -1,8 +1,10 @@
 import { NextPage } from 'next'
+import { useState } from 'react'
 import { withErrorGuard } from '@/lib/withErrorGuard/withErrorGuard'
-import InfiniteMovies from '@/components/InfiniteMovies'
+import InfiniteMovies from '@/components/NowPlayingMovies'
 import Filter from '@/components/Filter'
 import SelectMenus, { SelectItem } from '@/components/SelectMenus'
+import SegmentedControl, { SegmentedType } from '@/components/SegmentedControl'
 import { resolveRoute } from '@/lib/typed-route/typedRoute'
 import { useRouter } from 'next/router'
 
@@ -15,9 +17,10 @@ const NowPlaying: NextPage = () => {
     { text: 'Popularity Ascending', value: 'popularity.asc' },
     { text: 'Rating Descending', value: 'vote_average.desc' },
     { text: 'Rating Ascending', value: 'vote_average.asc' },
-    { text: 'Release Date Descending', value: 'primary_release_date.desc' },
-    { text: 'Release Date Ascending', value: 'primary_release_date.asc' },
   ]
+  const [segmentedControl, setSegmentedControl] = useState(
+    SegmentedType.GridView
+  )
 
   function handleSortChange(selectedValue: SelectItem['value']) {
     const params = {
@@ -31,15 +34,19 @@ const NowPlaying: NextPage = () => {
   return (
     <MainLayout>
       <section className="mt-4 mx-auto w-full">
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <Filter />
-          <SelectMenus
-            items={sorts}
-            value={router.query.sortBy as string}
-            onChange={handleSortChange}
-          />
+          <div className="flex items-center">
+            <SelectMenus
+              className="mr-4"
+              items={sorts}
+              value={router.query.sortBy as string}
+              onChange={handleSortChange}
+            />
+            <SegmentedControl onChange={setSegmentedControl} />
+          </div>
         </div>
-        <InfiniteMovies />
+        <InfiniteMovies segmentedControl={segmentedControl} />
       </section>
     </MainLayout>
   )

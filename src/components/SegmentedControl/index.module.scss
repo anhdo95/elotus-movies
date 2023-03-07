@@ -1,0 +1,9 @@
+@import 'common';
+
+.gridView {
+  @include image('~@/assets/icons/grid-view.svg', 28px, 28px);
+}
+
+.listView {
+  @include image('~@/assets/icons/list-view.svg', 32px, 32px);
+}
