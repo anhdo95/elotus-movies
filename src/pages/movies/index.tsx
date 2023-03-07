@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import { withErrorGuard } from '@/lib/withErrorGuard/withErrorGuard'
-import { useAppService } from '@/context/AppProvider'
-import { useQuery } from '@tanstack/react-query'
+// import { useAppService } from '@/context/AppProvider'
+// import { useQuery } from '@tanstack/react-query'
 
 import { useState } from 'react'
 import NowPlayingMovies from '@/components/NowPlayingMovies'
@@ -13,8 +13,8 @@ enum Tab {
 }
 
 const Movies: NextPage = () => {
-  const service = useAppService()
-  const router = useRouter()
+  // const service = useAppService()
+  // const router = useRouter()
 
   const tabItems = [
     { key: Tab.NowPlaying, label: 'Now Playing' },
@@ -57,6 +57,6 @@ const Movies: NextPage = () => {
 
 export default Movies
 
-export const getServerSideProps = withErrorGuard(async (ctx, service) => {
+export const getServerSideProps = withErrorGuard(async () => {
   return { props: {} }
 })

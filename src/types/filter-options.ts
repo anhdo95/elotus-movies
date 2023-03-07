@@ -1,5 +1,5 @@
 export type Option = {
-  name: string
+  title: string
   choices: Array<{
     name: string
     value: string

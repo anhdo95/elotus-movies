@@ -14,7 +14,7 @@ type Genre = {
 function getFilterOptions(genres: Genre[] = []): FilterOptions {
   return {
     withGenres: {
-      name: 'Genres',
+      title: 'Genres',
       choices: genres.map(({ id, name }) => ({ name, value: id.toString() })),
     },
   }
@@ -105,9 +105,9 @@ const TellerFilterPopup: React.FC<Props> = ({
   }
 
   const renderOptions = () => {
-    return map(options, ({ name, choices }, property) => (
+    return map(options, ({ title, choices }, property) => (
       <div key={property} className={classes.option}>
-        <span className="block text-sm text-111111">{name}</span>
+        <span className="block text-sm text-111111">{title}</span>
 
         <div className="flex flex-wrap mt-3">
           {choices.map(({ name, value }) => (

@@ -1,5 +1,4 @@
-import { QueryClient, dehydrate } from '@tanstack/react-query'
-import { SetCookie, CookieNames } from '@/lib/cookies/cookies'
+import { QueryClient } from '@tanstack/react-query'
 import { createAppService } from '@/services'
 import { redirect } from '@/utils/helper'
 
