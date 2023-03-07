@@ -9,8 +9,9 @@
   text-rendering: optimizeLegibility;
 }
 
-body {
+body, html {
   @apply leading-none;
+  min-height: 100vh;
 }
 
 button:focus,

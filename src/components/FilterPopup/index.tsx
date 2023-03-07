@@ -12,7 +12,7 @@ function getFilterOptions(): FilterOptions {
       name: 'Availabilities',
       choices: [{ name: 'Search all availabilities?', value: 'true' }],
     },
-    grades: {
+    withGenres: {
       name: 'Genres',
       choices: [
         {
@@ -36,7 +36,7 @@ import styles from './index.module.scss'
 
 export type SubmitPayload = {
   online: string[]
-  grades: string[]
+  withGenres: string[]
 }
 
 type OptionKey = keyof SubmitPayload
@@ -102,7 +102,7 @@ const TellerFilterPopup: React.FC<Props> = ({
   const submit = () => {
     onSubmit({
       online: toArray('online'),
-      grades: toArray('grades'),
+      withGenres: toArray('withGenres'),
     })
   }
 

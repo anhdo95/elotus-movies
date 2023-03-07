@@ -32,7 +32,11 @@ function SelectMenus(props: ComponentProps) {
       </svg>
       <select className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
         {props.items.map((item) => (
-          <option value={item.value} onClick={handleChange(item)}>
+          <option
+            key={item.value}
+            value={item.value}
+            onClick={handleChange(item)}
+          >
             {item.text}
           </option>
         ))}

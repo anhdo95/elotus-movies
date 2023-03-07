@@ -4,7 +4,7 @@ import { useBoolean } from 'react-use'
 import classNames from 'classnames'
 import { reduce, pickBy, omit } from 'lodash-es'
 
-import { AppRoutes, resolveRoute } from '@/lib/typed-route/typedRoute'
+import { resolveRoute } from '@/lib/typed-route/typedRoute'
 import { toQueries } from '@/utils/helper'
 import FilterPopup, { SubmitPayload } from '../FilterPopup'
 
@@ -29,7 +29,7 @@ const Filter: React.FC = () => {
 
   const initialSelection = useMemo(
     () => ({
-      grades: mapKeys(router.query.grades),
+      withGenres: mapKeys(router.query.withGenres),
       online: mapKeys(router.query.online),
     }),
     [router.query]
@@ -41,7 +41,6 @@ const Filter: React.FC = () => {
     const params = {
       ...omit(router.query, Object.keys(payload)), // Avoid getting payload params
       ...pickBy(payload, (value) => value.length), // Remove empty array params
-      page: 1,
     }
 
     router.replace(resolveRoute('Movies', params))
