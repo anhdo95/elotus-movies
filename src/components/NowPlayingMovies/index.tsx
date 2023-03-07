@@ -1,8 +1,11 @@
 import InfiniteMovies from '@/components/InfiniteMovies'
 import Filter from '@/components/Filter'
-import SelectMenus from '@/components/Select'
+import SelectMenus, { SelectItem } from '@/components/Select'
+import { resolveRoute } from '@/lib/typed-route/typedRoute'
+import { useRouter } from 'next/router'
 
 const NowPlayingMovies = () => {
+  const router = useRouter()
   const sorts = [
     { text: 'Popularity Descending', value: 'popularity.desc' },
     { text: 'Popularity Ascending', value: 'popularity.asc' },
@@ -12,11 +15,24 @@ const NowPlayingMovies = () => {
     { text: 'Release Date Ascending', value: 'primary_release_date.asc' },
   ]
 
+  function handleSortChange(selectedValue: SelectItem['value']) {
+    const params = {
+      ...router.query,
+      sortBy: selectedValue,
+    }
+
+    router.replace(resolveRoute('Movies', params))
+  }
+
   return (
     <section className="mt-12 mx-auto max-w-screen-xl">
       <div className="flex justify-between">
         <Filter />
-        <SelectMenus items={sorts} onChange={console.log} />
+        <SelectMenus
+          items={sorts}
+          value={router.query.sortBy as string}
+          onChange={handleSortChange}
+        />
       </div>
       <InfiniteMovies />
     </section>

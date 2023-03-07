@@ -6,33 +6,23 @@ import classNames from 'classnames'
 import BottomSheet from '@/components/BottomSheet'
 import FilterOptions from '@/types/filter-options'
 
-function getFilterOptions(): FilterOptions {
+type Genre = {
+  id: number
+  name: string
+}
+
+function getFilterOptions(genres: Genre[] = []): FilterOptions {
   return {
-    online: {
-      name: 'Availabilities',
-      choices: [{ name: 'Search all availabilities?', value: 'true' }],
-    },
     withGenres: {
       name: 'Genres',
-      choices: [
-        {
-          name: 'Action',
-          value: '28',
-        },
-        {
-          name: 'Adventure',
-          value: '12',
-        },
-        {
-          name: 'Animation',
-          value: '16',
-        },
-      ],
+      choices: genres.map(({ id, name }) => ({ name, value: id.toString() })),
     },
   }
 }
 
 import styles from './index.module.scss'
+import { useQuery } from '@tanstack/react-query'
+import { useAppService } from '@/context/AppProvider'
 
 export type SubmitPayload = {
   online: string[]
@@ -55,7 +45,11 @@ const TellerFilterPopup: React.FC<Props> = ({
   onSubmit,
   onClose,
 }) => {
-  const options = useMemo(() => getFilterOptions(), [])
+  const service = useAppService()
+  const { data: { genres } = {} } = useQuery(['movie-list-genres'], () =>
+    service.genre.getMovieListGenres()
+  )
+  const options = useMemo(() => getFilterOptions(genres), [genres])
   const [selection, setSelection] = useState<Selection>(initialSelection)
 
   useUpdateEffect(() => setSelection(initialSelection), [visible])

@@ -36,8 +36,6 @@ function InfiniteMovies() {
     }
   )
 
-  console.log('hasNextPage', hasNextPage)
-
   if (isLoading) return <div className="loading">Loading...</div>
   if (isError) return <div>Error! {error.toString()}</div>
 

@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 
-type SelectItem = {
+export type SelectItem = {
   value: number | string
   text: string
 }
@@ -8,16 +8,22 @@ type SelectItem = {
 type ComponentProps = {
   className?: string
   items: SelectItem[]
-  onChange(selected: SelectItem): void
+  value: SelectItem['value']
+  onChange(selectedValue: SelectItem['value']): void
 }
 
 function SelectMenus(props: ComponentProps) {
-  function handleChange(selected: SelectItem) {
-    return () => props.onChange(selected)
+  function handleChange(e: React.SyntheticEvent) {
+    props.onChange((e.target as HTMLSelectElement).value)
   }
 
   return (
-    <div className={classnames('relative max-w-xs', props.className)}>
+    <div
+      className={classnames(
+        'cursor-pointer relative max-w-xs',
+        props.className
+      )}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 right-2.5"
@@ -30,12 +36,15 @@ function SelectMenus(props: ComponentProps) {
           clipRule="evenodd"
         />
       </svg>
-      <select className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+      <select
+        className="cursor-pointer w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
+        onChange={handleChange}
+      >
         {props.items.map((item) => (
           <option
+            selected={props.value === item.value}
             key={item.value}
             value={item.value}
-            onClick={handleChange(item)}
           >
             {item.text}
           </option>
