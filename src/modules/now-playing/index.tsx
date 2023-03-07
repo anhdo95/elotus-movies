@@ -1,8 +1,5 @@
 import { NextPage } from 'next'
-// import { useRouter } from 'next/router'
 import { withErrorGuard } from '@/lib/withErrorGuard/withErrorGuard'
-// import { useAppService } from '@/context/AppProvider'
-// import { useQuery } from '@tanstack/react-query'
 import InfiniteMovies from '@/components/InfiniteMovies'
 import Filter from '@/components/Filter'
 import SelectMenus, { SelectItem } from '@/components/SelectMenus'
@@ -12,9 +9,6 @@ import { useRouter } from 'next/router'
 import MainLayout from '@/layouts/MainLayout'
 
 const NowPlaying: NextPage = () => {
-  // const service = useAppService()
-  // const router = useRouter()
-
   const router = useRouter()
   const sorts = [
     { text: 'Popularity Descending', value: 'popularity.desc' },

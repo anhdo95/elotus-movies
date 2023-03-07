@@ -7,6 +7,8 @@ import {
   AppRoutesType,
   resolveRoute,
 } from '@/lib/typed-route/typedRoute'
+import { Genre } from '@/types/genre'
+import FilterOptions from '@/types/filter-options'
 
 export function redirect(
   to: RouteNames,
@@ -37,4 +39,13 @@ export function updateQuery(query: ParsedUrlQuery, resetPage?: boolean) {
 
 export function toQueries(query: string | string[]): string[] {
   return Array.isArray(query) ? query : [query]
+}
+
+export function getFilterOptions(genres: Genre[] = []): FilterOptions {
+  return {
+    withGenres: {
+      title: 'Genres',
+      choices: genres.map(({ id, name }) => ({ name, value: id.toString() })),
+    },
+  }
 }

@@ -20,7 +20,7 @@ const MainLayout: React.FC<Props> = ({ children, className }) => {
       <Header />
       <main
         className={classNames(
-          'bg-white flex flex-col pb-12 px-container xl:px-0',
+          'bg-white flex flex-col pb-12 mx-auto max-w-container px-container',
           className
         )}
       >

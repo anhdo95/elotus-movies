@@ -2,27 +2,14 @@ import { TouchEvent, useMemo, useState } from 'react'
 import { useUpdateEffect } from 'react-use'
 import { map, reduce } from 'lodash-es'
 import classNames from 'classnames'
+import { useQuery } from '@tanstack/react-query'
 
 import BottomSheet from '@/components/BottomSheet'
-import FilterOptions from '@/types/filter-options'
-
-type Genre = {
-  id: number
-  name: string
-}
-
-function getFilterOptions(genres: Genre[] = []): FilterOptions {
-  return {
-    withGenres: {
-      title: 'Genres',
-      choices: genres.map(({ id, name }) => ({ name, value: id.toString() })),
-    },
-  }
-}
+import { useAppService } from '@/context/AppProvider'
+import { getFilterOptions } from '@/utils/helper'
+import { queryKeys } from '@/react-query/constants'
 
 import styles from './index.module.scss'
-import { useQuery } from '@tanstack/react-query'
-import { useAppService } from '@/context/AppProvider'
 
 export type SubmitPayload = {
   withGenres: string[]
@@ -45,7 +32,7 @@ const TellerFilterPopup: React.FC<Props> = ({
   onClose,
 }) => {
   const service = useAppService()
-  const { data: { genres } = {} } = useQuery(['movie-list-genres'], () =>
+  const { data: { genres } = {} } = useQuery([queryKeys.genres], () =>
     service.genre.getMovieListGenres()
   )
   const options = useMemo(() => getFilterOptions(genres), [genres])
@@ -152,8 +139,8 @@ const TellerFilterPopup: React.FC<Props> = ({
       </div>
 
       <footer className={classNames('px-4 py-5', styles.footer)}>
-        <button className={classes.applyButton} onClick={submit}>
-          Apply
+        <button className={classes.searchButton} onClick={submit}>
+          Search
         </button>
       </footer>
     </BottomSheet>
@@ -175,7 +162,7 @@ const classes = {
   choice:
     'inline-block px-[13px] py-[9px] text-xs text-111111 border border-solid border-dfdfdf rounded-[3px] mr-1.5 mb-1.5 cursor-pointer',
   active: classNames('!border-black bg-black', styles.active),
-  applyButton: classNames(
+  searchButton: classNames(
     'w-full h-14 bg-indigo-600 text-white text-sm font-bold rounded-[5px]'
   ),
 }
