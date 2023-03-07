@@ -1,21 +1,14 @@
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import NProgress from 'nprogress'
+import { QueryClientProvider } from '@tanstack/react-query'
 import Router from 'next/router'
+import NProgress from 'nprogress'
 import { useMount } from 'react-use'
+import { ToastContainer } from 'react-toastify'
 
 import { AppProvider } from '@/context'
-import Modal from '@/components/Modal'
+import queryClient from '@/react-query/queryClient'
 
 import '@/styles/globals.scss'
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 3e3,
-    },
-  },
-})
 
 export default function App({ Component, pageProps }: AppProps) {
   useMount(() => {
@@ -28,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <AppProvider>
         <Component {...pageProps} />
-        <Modal />
+        <ToastContainer />
       </AppProvider>
     </QueryClientProvider>
   )

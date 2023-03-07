@@ -1,6 +1,6 @@
-import Axios, { AxiosError, AxiosInstance } from 'axios'
+import Axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import Router from 'next/router'
-import { snakeCase, mapKeys } from 'lodash-es'
+import { camelizeKeys, decamelizeKeys } from 'humps'
 import AppConfig from '@/config'
 import { isClient } from '@/utils/env'
 import { AppRoutes } from '@/lib/typed-route/typedRoute'
@@ -17,10 +17,21 @@ export default function createAxiosInstance(token?: string): AxiosInstance {
     timeout: 60000,
     paramsSerializer: {
       serialize(params) {
-        const snakeParams = mapKeys(params, (value, key) => snakeCase(key))
+        const snakeParams = decamelizeKeys(params) as Record<string, string>
         return new URLSearchParams(snakeParams).toString()
       },
     },
+  })
+
+  axios.interceptors.response.use((response: AxiosResponse) => {
+    if (
+      response.data &&
+      response.headers['content-type'].includes('application/json')
+    ) {
+      response.data = camelizeKeys(response.data)
+    }
+
+    return response
   })
 
   if (isClient()) {
@@ -33,7 +44,7 @@ export default function createAxiosInstance(token?: string): AxiosInstance {
           break
         }
         case 404: {
-          // Router.push(AppRoutes.NotFoundError.path)
+          Router.push(AppRoutes.NotFoundError.path)
           break
         }
         default:

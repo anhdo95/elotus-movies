@@ -1,5 +1,5 @@
 :root {
-  --container-width: 100vw;
+  --container-width: min(100vw, theme('maxWidth.container'));
   --color-logo: #fff;
   --color-logo-bg: #A1C1D2;
   --color-title: #000;
@@ -10,4 +10,8 @@
   --color-explanatory-text-color: #000;
   --color-filtering-apply-button-color: #fff;
   --color-filtering-apply-button-bg: #A1C1D2;
+
+  @media screen and (max-width: theme('maxWidth.container')) {
+    --container-width: 100vw;
+  }
 }

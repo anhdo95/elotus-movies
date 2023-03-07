@@ -25,7 +25,6 @@ import { useQuery } from '@tanstack/react-query'
 import { useAppService } from '@/context/AppProvider'
 
 export type SubmitPayload = {
-  online: string[]
   withGenres: string[]
 }
 
@@ -95,7 +94,6 @@ const TellerFilterPopup: React.FC<Props> = ({
 
   const submit = () => {
     onSubmit({
-      online: toArray('online'),
       withGenres: toArray('withGenres'),
     })
   }

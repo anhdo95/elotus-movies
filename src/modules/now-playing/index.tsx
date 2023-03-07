@@ -36,7 +36,7 @@ const NowPlaying: NextPage = () => {
 
   return (
     <MainLayout>
-      <section className="mt-4 mx-auto max-w-screen-xl">
+      <section className="mt-4 mx-auto w-full">
         <div className="flex justify-between">
           <Filter />
           <SelectMenus

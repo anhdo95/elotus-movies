@@ -1,15 +1,17 @@
-import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import InfiniteScroll from 'react-infinite-scroller'
 import PullToRefresh from 'react-simple-pull-to-refresh'
+
 import MovieCard from '@/components/MovieCard'
+import Spinner from '@/components/Spinner'
 import { useAppService } from '@/context/AppProvider'
-import { useRouter } from 'next/router'
 import { Movie } from '@/types/movie'
+import queryClient, { queryKeys } from '@/react-query/queryClient'
 
 function InfiniteMovies() {
   const service = useAppService()
   const router = useRouter()
-  const queryClient = useQueryClient()
 
   const {
     data,
@@ -18,9 +20,8 @@ function InfiniteMovies() {
     isLoading,
     isFetchingNextPage,
     isError,
-    error,
   } = useInfiniteQuery(
-    ['now-playing-movies', router.query],
+    [queryKeys.nowPlayingMovies, router.query],
     ({ pageParam = 0 }) =>
       service.movie.getNowPlayingMovies({
         ...router.query,
@@ -28,7 +29,7 @@ function InfiniteMovies() {
       }),
     {
       getNextPageParam: (lastPage) => {
-        if (lastPage.page >= lastPage.total_pages) {
+        if (lastPage.page >= lastPage.totalPages) {
           return undefined
         }
         return lastPage.page
@@ -37,23 +38,27 @@ function InfiniteMovies() {
   )
 
   if (isLoading) return <div className="loading">Loading...</div>
-  if (isError) return <div>Error! {error.toString()}</div>
+  if (isError) return null
 
   console.log('data', data)
 
   async function handleRefresh() {
-    // queryClient.invalidateQueries(['now-playing-movies'], { exact: false })
-    queryClient.resetQueries(['now-playing-movies'])
+    // queryClient.invalidateQueries([queryKeys.nowPlayingMovies], { exact: false })
+    queryClient.resetQueries([queryKeys.nowPlayingMovies])
   }
 
   return (
     <>
-      {/* {isFetchingNextPage && <div className="loading">Loading...</div>} */}
       <PullToRefresh onRefresh={handleRefresh}>
         <InfiniteScroll
           className="mt-4 grid gap-2 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
           loadMore={() => !isFetchingNextPage && fetchNextPage()}
           hasMore={hasNextPage}
+          loader={
+            <div className="col-span-full">
+              <Spinner className="mx-auto" />
+            </div>
+          }
         >
           {data.pages.map((pageData) => {
             return pageData.results.map((movie: Movie) => {

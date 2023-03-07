@@ -33,7 +33,7 @@ const Header: React.FC = () => {
       })}
     >
       <nav>
-        <ul className="max-w-screen-xl mx-auto flex items-center gap-x-3 overflow-x-auto text-sm">
+        <ul className="max-w-screen-xl px-container xl:px-0 mx-auto flex items-center gap-x-3 overflow-x-auto text-sm">
           {routes.map(({ path, label }) => (
             <li
               key={path}

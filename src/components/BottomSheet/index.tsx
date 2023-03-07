@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import classNames from 'classnames'
 
 import useBottomSheet from '@/hooks/useBottomSheet'
-import Popup from '../Popup'
+import Popup from '@/components/Popup'
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   visible: boolean

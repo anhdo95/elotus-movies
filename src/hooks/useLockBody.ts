@@ -1,7 +1,7 @@
 import { useEffectOnce } from 'react-use'
 
 /**
- * Don't use react-use `useLockBodyScroll()` hook because it is trash
+ * Don't use react-use `useLockBodyScroll()` hook
  */
 function useLockBody(): void {
   useEffectOnce(() => {

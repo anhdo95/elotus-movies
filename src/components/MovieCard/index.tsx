@@ -14,7 +14,7 @@ function MovieCard(movie: Movie) {
     >
       <a href={`movies/${movie.id}`}>
         <Image
-          src={getImageUrl(movie.poster_path)}
+          src={getImageUrl(movie.posterPath)}
           // fallbackSrc={DefaultImage.src}
           layout="responsive"
           width={500}
@@ -23,7 +23,7 @@ function MovieCard(movie: Movie) {
         <div className="flex flex-col mt-2 py-4 mx-4">
           <span className="block text-gray-900">{movie.title}</span>
           <span className="block text-gray-400 text-sm">
-            {movie.release_date}
+            {movie.releaseDate}
           </span>
         </div>
       </a>
