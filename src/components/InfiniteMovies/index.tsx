@@ -34,7 +34,7 @@ function InfiniteMovies() {
     <>
       {isFetchingNextPage && <div className="loading">Loading...</div>}
       <InfiniteScroll
-        className="mt-12 grid gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+        className="mt-12 grid gap-2 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
         loadMore={() => !isFetchingNextPage && fetchNextPage()}
         hasMore={hasNextPage}
       >
