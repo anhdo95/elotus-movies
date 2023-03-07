@@ -20,7 +20,7 @@ function SelectMenus(props: ComponentProps) {
   return (
     <div
       className={classnames(
-        'cursor-pointer relative max-w-xs',
+        'cursor-pointer relative max-w-md',
         props.className
       )}
     >
@@ -37,7 +37,7 @@ function SelectMenus(props: ComponentProps) {
         />
       </svg>
       <select
-        className="cursor-pointer w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
+        className="cursor-pointer w-full p-2.5 pr-9 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
         onChange={handleChange}
       >
         {props.items.map((item) => (
