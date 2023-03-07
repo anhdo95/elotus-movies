@@ -178,8 +178,7 @@ const classes = {
     'inline-block px-[13px] py-[9px] text-xs text-111111 border border-solid border-dfdfdf rounded-[3px] mr-1.5 mb-1.5 cursor-pointer',
   active: classNames('!border-black bg-black', styles.active),
   applyButton: classNames(
-    'w-full h-14 text-sm font-bold rounded-[5px]',
-    styles.applyButton
+    'w-full h-14 bg-indigo-600 text-white text-sm font-bold rounded-[5px]'
   ),
 }
 // "
