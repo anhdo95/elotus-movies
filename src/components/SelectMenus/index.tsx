@@ -37,7 +37,7 @@ function SelectMenus(props: ComponentProps) {
         />
       </svg>
       <select
-        className="cursor-pointer w-full p-2.5 pr-9 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
+        className="cursor-pointer w-full p-2 text-sm pr-9 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
         onChange={handleChange}
       >
         {props.items.map((item) => (

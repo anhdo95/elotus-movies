@@ -5,13 +5,13 @@ import { withErrorGuard } from '@/lib/withErrorGuard/withErrorGuard'
 // import { useQuery } from '@tanstack/react-query'
 import InfiniteMovies from '@/components/InfiniteMovies'
 import Filter from '@/components/Filter'
-import SelectMenus, { SelectItem } from '@/components/Select'
+import SelectMenus, { SelectItem } from '@/components/SelectMenus'
 import { resolveRoute } from '@/lib/typed-route/typedRoute'
 import { useRouter } from 'next/router'
 
 import MainLayout from '@/layouts/MainLayout'
 
-const Movies: NextPage = () => {
+const NowPlaying: NextPage = () => {
   // const service = useAppService()
   // const router = useRouter()
 
@@ -51,7 +51,7 @@ const Movies: NextPage = () => {
   )
 }
 
-export default Movies
+export default NowPlaying
 
 export const getServerSideProps = withErrorGuard(async () => {
   return { props: {} }

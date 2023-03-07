@@ -1,6 +1,6 @@
 import InfiniteMovies from '@/components/InfiniteMovies'
 import Filter from '@/components/Filter'
-import SelectMenus, { SelectItem } from '@/components/Select'
+import SelectMenus, { SelectItem } from '@/components/SelectMenus'
 import { resolveRoute } from '@/lib/typed-route/typedRoute'
 import { useRouter } from 'next/router'
 
