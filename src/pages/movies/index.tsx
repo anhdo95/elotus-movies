@@ -16,10 +16,6 @@ const Movies: NextPage = () => {
   const service = useAppService()
   const router = useRouter()
 
-  const { data: movies } = useQuery(['now-playing-movies'], () =>
-    service.movie.getNowPlayingMovies()
-  )
-
   const tabItems = [
     { key: Tab.NowPlaying, label: 'Now Playing' },
     { key: Tab.TopRated, label: 'Top Rated' },
@@ -54,11 +50,7 @@ const Movies: NextPage = () => {
         ))}
       </ul>
 
-      <div>
-        {selectedTab === Tab.NowPlaying && (
-          <NowPlayingMovies movies={movies?.results} />
-        )}
-      </div>
+      <div>{selectedTab === Tab.NowPlaying && <NowPlayingMovies />}</div>
     </div>
   )
 }
@@ -66,9 +58,5 @@ const Movies: NextPage = () => {
 export default Movies
 
 export const getServerSideProps = withErrorGuard(async (ctx, service) => {
-  await service.queryClient.prefetchQuery(['now-playing-movies'], () =>
-    service.movie.getNowPlayingMovies()
-  )
-
   return { props: {} }
 })
