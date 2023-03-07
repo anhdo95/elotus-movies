@@ -1,5 +1,6 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import InfiniteScroll from 'react-infinite-scroller'
+import PullToRefresh from 'react-simple-pull-to-refresh'
 import MovieCard from '@/components/MovieCard'
 import { useAppService } from '@/context/AppProvider'
 import { useRouter } from 'next/router'
@@ -8,6 +9,7 @@ import { Movie } from '@/types/movie'
 function InfiniteMovies() {
   const service = useAppService()
   const router = useRouter()
+  const queryClient = useQueryClient()
 
   const {
     data,
@@ -30,20 +32,27 @@ function InfiniteMovies() {
 
   console.log('data', data)
 
+  async function handleRefresh() {
+    // queryClient.invalidateQueries(['now-playing-movies'], { exact: false })
+    queryClient.resetQueries(['now-playing-movies'])
+  }
+
   return (
     <>
       {isFetchingNextPage && <div className="loading">Loading...</div>}
-      <InfiniteScroll
-        className="mt-12 grid gap-2 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-        loadMore={() => !isFetchingNextPage && fetchNextPage()}
-        hasMore={hasNextPage}
-      >
-        {data.pages.map((pageData) => {
-          return pageData.results.map((movie: Movie) => {
-            return <MovieCard {...movie} />
-          })
-        })}
-      </InfiniteScroll>
+      <PullToRefresh onRefresh={handleRefresh}>
+        <InfiniteScroll
+          className="mt-12 grid gap-2 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+          loadMore={() => !isFetchingNextPage && fetchNextPage()}
+          hasMore={hasNextPage}
+        >
+          {data.pages.map((pageData) => {
+            return pageData.results.map((movie: Movie) => {
+              return <MovieCard {...movie} />
+            })
+          })}
+        </InfiniteScroll>
+      </PullToRefresh>
     </>
   )
 }
