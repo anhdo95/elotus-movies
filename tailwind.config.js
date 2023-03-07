@@ -12,6 +12,22 @@ module.exports = {
       xl: '1280px', // @media (min-width: 1280px) { ... }
     },
     extend: {
+      width: {
+        container: '1440px',
+      },
+
+      maxWidth: {
+        container: '1440px',
+      },
+
+      spacing: {
+        container: '18px',
+      },
+
+      zIndex: {
+        header: 1000,
+      },
+
       colors: {
         ...genColors([
           '21063d',
