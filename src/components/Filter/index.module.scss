@@ -1,0 +1,5 @@
+@import 'common';
+
+.filterIcon {
+  @include image('~@/assets/icons/filter.svg', 14px, 14px);
+}

@@ -1,0 +1,59 @@
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+@mixin image($url, $w: 24px, $h: 24px) {
+  display: inline-block;
+  background: url($url);
+  width: $w;
+  height: $h;
+  background-size: cover;
+  background-repeat: no-repeat; /* Fix image not show in android: https://stackoverflow.com/questions/52059783/css-background-image-not-showing-up-in-android-device*/
+}
+
+@mixin absoluteFill() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@mixin absoluteVerticalCenter {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin shadow($size) {
+  @if ($size == sm) {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  } @else if ($size == md) {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  } @else if ($size == lg) {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  } @else {
+    @error 'Invalid size';
+  }
+}
+
+@mixin computedHorizontalWidth(
+  $number-of-items: 2,
+  $container-margin-left: 14px,
+  $offset: 14px,
+  $gap: 10px
+) {
+  width: calc(
+    (var(--container-width) - #{$container-margin-left} - #{$offset}) / #{$number-of-items} - #{$gap}
+  );
+
+  &:not(:last-child) {
+    margin-right: $gap;
+  }
+}
+

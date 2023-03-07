@@ -1,5 +1,6 @@
 import InfiniteMovies from '@/components/InfiniteMovies'
-import SelectMenus from '../Select'
+import Filter from '@/components/Filter'
+import SelectMenus from '@/components/Select'
 
 const NowPlayingMovies = () => {
   const sorts = [
@@ -12,9 +13,9 @@ const NowPlayingMovies = () => {
   ]
 
   return (
-    <section className="mt-12 max-w-screen-xl">
+    <section className="mt-12 mx-auto max-w-screen-xl">
       <div className="flex justify-between">
-        <div>Filter</div>
+        <Filter />
         <SelectMenus items={sorts} onChange={console.log} />
       </div>
       <InfiniteMovies />

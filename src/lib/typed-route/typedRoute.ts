@@ -6,10 +6,9 @@ const createRoute = <T = never>(path: string): RouteObject<T> => ({ path })
 
 export const AppRoutes = {
   Home: createRoute('/'),
-  Login: createRoute<{ referer: string }>('/auth/login'),
+  Movies: createRoute<{ page: number }>('/movies'),
   NotFoundError: createRoute('/error/not-found'),
   ServerError: createRoute('/error/server-error'),
-  UserEditable: createRoute<{ id: string }>('/management/users/[id]'),
 }
 
 export type AppRoutesType = typeof AppRoutes

@@ -1,0 +1,24 @@
+@import 'common';
+
+.resetIcon {
+  @include image('~@/assets/icons/reset.svg', 17px, 17px);
+}
+
+.closeIcon {
+  @include image('~@/assets/icons/close.svg', 17px, 17px);
+}
+
+.active {
+  @apply text-white;
+}
+
+.options {
+  @media (orientation: landscape) {
+    max-height: 40vh;
+  }
+}
+
+.applyButton {
+  color: var(--color-filtering-apply-button-color);
+  background-color: var(--color-filtering-apply-button-bg);
+}

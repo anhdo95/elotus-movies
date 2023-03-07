@@ -34,3 +34,7 @@ export function updateQuery(query: ParsedUrlQuery, resetPage?: boolean) {
   q.query = omitBy(q.query, isEmpty)
   Router.push(q, undefined, { shallow: true })
 }
+
+export function toQueries(query: string | string[]): string[] {
+  return Array.isArray(query) ? query : [query]
+}

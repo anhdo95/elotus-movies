@@ -17,7 +17,7 @@ function SelectMenus(props: ComponentProps) {
   }
 
   return (
-    <div className={classnames('relative max-w-xs mt-12', props.className)}>
+    <div className={classnames('relative max-w-xs', props.className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 right-2.5"
