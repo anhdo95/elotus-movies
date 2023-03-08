@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { withErrorGuard } from '@/lib/withErrorGuard/withErrorGuard'
-import InfiniteMovies from '@/components/NowPlayingMovies'
+import NowPlayingMovies from '@/components/NowPlayingMovies'
 import Filter from '@/components/Filter'
 import SelectMenus, { SelectItem } from '@/components/SelectMenus'
 import SegmentedControl, { SegmentedType } from '@/components/SegmentedControl'
@@ -46,7 +46,7 @@ const NowPlaying: NextPage = () => {
             <SegmentedControl onChange={setSegmentedControl} />
           </div>
         </div>
-        <InfiniteMovies segmentedControl={segmentedControl} />
+        <NowPlayingMovies segmentedControl={segmentedControl} />
       </section>
     </MainLayout>
   )
