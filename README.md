@@ -37,7 +37,9 @@ yarn build
 - TailwindCSS
 - Axios
 
-# Note
+# TODO
+- Add unit tests, integration tests, and e2e tests
+- Add CI/CD deployment pipeline (GitHub actions)
 
 ## Convention
 
