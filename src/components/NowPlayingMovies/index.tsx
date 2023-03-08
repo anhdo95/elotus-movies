@@ -3,7 +3,9 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import InfiniteScroll from 'react-infinite-scroller'
 import PullToRefresh from 'react-simple-pull-to-refresh'
 import classNames from 'classnames'
+import { range } from 'lodash-es'
 
+import VerticalMovieLoader from '@/components/VerticalMovieLoader'
 import HorizontalMovieCard from '@/components/HorizontalMovieCard'
 import VerticalMovieCard from '@/components/VerticalMovieCard'
 import Spinner from '@/components/Spinner'
@@ -44,8 +46,16 @@ function NowPlayingMovies(props: ComponentProps) {
     }
   )
 
-  if (isLoading) return <div className="loading">Loading...</div>
   if (isError) return null
+  if (isLoading) {
+    return (
+      <div className="grid gap-4 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {range(20).map((key) => (
+          <VerticalMovieLoader key={key} />
+        ))}
+      </div>
+    )
+  }
 
   const isListView = props.segmentedControl === SegmentedType.ListView
 
