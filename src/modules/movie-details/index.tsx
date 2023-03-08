@@ -28,8 +28,6 @@ const MovieDetails: NextPage = () => {
   if (isLoading) return <div className="loading">Loading...</div>
   if (isError) return null
 
-  console.log('movie', movie)
-
   return (
     <MainLayout>
       <section className="mt-2 mx-auto w-full">

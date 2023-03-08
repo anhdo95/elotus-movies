@@ -64,8 +64,6 @@ function TopRatedMovies(props: ComponentProps) {
     queryClient.resetQueries([queryKeys.topRatedMovies])
   }
 
-  console.log('data', data)
-
   return (
     <PullToRefresh onRefresh={handleRefresh}>
       <InfiniteScroll
