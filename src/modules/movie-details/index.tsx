@@ -38,8 +38,8 @@ const MovieDetails: NextPage = () => {
           style={{ backgroundImage: `url(${getImageUrl(movie.backdropPath)})` }}
         >
           <div className={classNames('overflow-hidden', styles.backdrop)}>
-            <div className="max-w-container mx-auto grid xs:grid-cols-5 md:grid-cols-2 lg:grid-cols-4 text-white p-container w-full">
-              <div className="xs:col-span-2 lg:col-span-1">
+            <div className="max-w-container mx-auto grid sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-4 text-white p-container w-full">
+              <div className="md:col-span-2 lg:col-span-1">
                 <Image
                   className="rounded-md"
                   src={getImageUrl(movie.posterPath)}
@@ -49,7 +49,7 @@ const MovieDetails: NextPage = () => {
                   height={750}
                 />
               </div>
-              <div className="xs:col-span-3 md:col-span-1 lg:col-span-3 flex flex-col px-4 lg:px-8 py-4 bg-color-333">
+              <div className="md:col-span-3 lg:col-span-3 flex flex-col px-4 lg:px-8 py-4 bg-color-333">
                 <h3 className="font-semibold text-2xl md:text-3xl">
                   {movie.title}
                 </h3>
