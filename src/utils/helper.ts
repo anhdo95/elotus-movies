@@ -1,7 +1,4 @@
-import { ParsedUrlQuery } from 'querystring'
 import { GetServerSidePropsResult } from 'next'
-import Router from 'next/router'
-import { isEmpty, omitBy } from 'lodash-es'
 import {
   RouteNames,
   AppRoutesType,
@@ -9,6 +6,7 @@ import {
 } from '@/lib/typed-route/typedRoute'
 import { Genre } from '@/types/genre'
 import FilterOptions from '@/types/filter-options'
+import AppConfig from '@/config'
 
 export function redirect(
   to: RouteNames,
@@ -22,21 +20,6 @@ export function redirect(
   }
 }
 
-export function updateQuery(query: ParsedUrlQuery, resetPage?: boolean) {
-  const q = {
-    pathname: Router.pathname,
-    query: {
-      ...Router.query,
-      ...query,
-    },
-  }
-  if (resetPage && q.query.page) {
-    delete q.query.page
-  }
-  q.query = omitBy(q.query, isEmpty)
-  Router.push(q, undefined, { shallow: true })
-}
-
 export function toQueries(query: string | string[]): string[] {
   return Array.isArray(query) ? query : [query]
 }
@@ -48,4 +31,8 @@ export function getFilterOptions(genres: Genre[] = []): FilterOptions {
       choices: genres.map(({ id, name }) => ({ name, value: id.toString() })),
     },
   }
+}
+
+export function getImageUrl(url: string) {
+  return `${AppConfig.IMAGE_BASE_URL}/${url}`
 }

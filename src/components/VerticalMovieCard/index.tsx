@@ -1,21 +1,22 @@
+import Link from 'next/link'
 import Image from '@/components/Image'
 import { Movie } from '@/types/movie'
-import AppConfig from '@/config'
-
-function getImageUrl(url: string) {
-  return `${AppConfig.IMAGE_BASE_URL}/${url}`
-}
+import { getImageUrl } from '@/utils/helper'
 
 function VerticalMovieCard(movie: Movie) {
   return (
-    <article className="w-100 shadow-lg border rounded-md duration-300 hover:shadow-sm">
-      <a href={`movies/${movie.id}`}>
+    <Link href={`/movies/${movie.id}`}>
+      <a className="w-100 shadow-lg border rounded-md duration-300 hover:shadow-sm">
         <Image
           src={getImageUrl(movie.posterPath)}
           // fallbackSrc={DefaultImage.src}
           layout="responsive"
           width={500}
           height={750}
+          sizes="
+              (max-width: 414px) 50vw,
+              (max-width: 768px) 25vw,
+              20vw"
         />
         <div className="flex flex-col mt-2 py-4 mx-4">
           <h3 className="block text-gray-900">{movie.title}</h3>
@@ -24,7 +25,7 @@ function VerticalMovieCard(movie: Movie) {
           </span>
         </div>
       </a>
-    </article>
+    </Link>
   )
 }
 

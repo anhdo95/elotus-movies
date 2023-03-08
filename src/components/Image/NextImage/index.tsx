@@ -1,11 +1,10 @@
 import Image, { ImageProps } from 'next/image'
-
-const optimizedImageDomains = ['https://image.tmdb.org']
+import AppConfig from '@/config'
 
 function isUnoptimizedUrl(url: string): boolean {
   return (
     /^https?:\/\//i.test(url) &&
-    !optimizedImageDomains.some((domain) =>
+    !AppConfig.OPTIMIZED_IMAGE_DOMAINS.some((domain) =>
       url.startsWith(`https://${domain}/`)
     )
   )
