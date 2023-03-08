@@ -64,6 +64,8 @@ function TopRatedMovies(props: ComponentProps) {
     queryClient.resetQueries([queryKeys.topRatedMovies])
   }
 
+  console.log('data', data)
+
   return (
     <PullToRefresh onRefresh={handleRefresh}>
       <InfiniteScroll
@@ -81,15 +83,21 @@ function TopRatedMovies(props: ComponentProps) {
           </div>
         }
       >
-        {data.pages.map((pageData) => {
-          return pageData.results.map((movie: Movie) =>
-            isListView ? (
-              <HorizontalMovieCard key={movie.id} {...movie} />
-            ) : (
-              <VerticalMovieCard key={movie.id} {...movie} />
+        {data.pages.map((pageData) =>
+          pageData.results.length ? (
+            pageData.results.map((movie: Movie) =>
+              isListView ? (
+                <HorizontalMovieCard key={movie.id} {...movie} />
+              ) : (
+                <VerticalMovieCard key={movie.id} {...movie} />
+              )
             )
+          ) : (
+            <div className="fixed top-1/2 left-1/2 -translate-x-1/2">
+              There are no movies found
+            </div>
           )
-        })}
+        )}
       </InfiniteScroll>
     </PullToRefresh>
   )
