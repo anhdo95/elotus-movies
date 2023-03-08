@@ -2,6 +2,14 @@
 
 It is a movies app using the [The Movie Database API](https://developers.themoviedb.org/3).
 
+## Get and set API KEY
+
+Sign up and sign in your account and follow the getting started below to get an API KEY
+
+https://developers.themoviedb.org/3/getting-started/introduction.
+
+Set your API KEY to `NEXT_PUBLIC_API_KEY` in the `src/env/dev.env` file.
+
 ## Development
 
 - Install dependencies
