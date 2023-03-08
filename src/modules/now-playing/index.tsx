@@ -32,7 +32,7 @@ const NowPlaying: NextPage = () => {
   }
 
   return (
-    <MainLayout>
+    <MainLayout className="max-w-container px-container">
       <section className="mt-4 mx-auto w-full">
         <div className="flex justify-between items-center">
           <Filter />

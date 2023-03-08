@@ -30,6 +30,7 @@ const Header: React.FC = () => {
     <header
       className={classnames('sticky top-0 w-full bg-white z-header', {
         'shadow-lg': scrolled,
+        'border-b': !scrolled,
       })}
     >
       <nav>

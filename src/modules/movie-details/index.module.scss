@@ -1,0 +1,7 @@
+@import 'common';
+
+.backdrop {
+  background: linear-gradient(to right, rgb(91, 91, 181) calc((50vw - 170px) - 340px),
+    rgba(25, 25, 79, 0.84) 50%,
+    rgba(31.5, 31.5, 94.5, 0.84) 100%);
+}
