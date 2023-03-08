@@ -6,7 +6,8 @@ const createRoute = <T = never>(path: string): RouteObject<T> => ({ path })
 
 export const AppRoutes = {
   Home: createRoute('/'),
-  Movies: createRoute<{}>('/movies/now-playing'),
+  NowPlayingMovies: createRoute<{}>('/movies/now-playing'),
+  TopRatedMovies: createRoute<{}>('/movies/top-rated'),
   NotFoundError: createRoute('/error/not-found'),
   ServerError: createRoute('/error/server-error'),
 }

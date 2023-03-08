@@ -28,7 +28,7 @@ const TopRated: NextPage = () => {
       sortBy: selectedValue,
     }
 
-    router.replace(resolveRoute('Movies', params))
+    router.replace(resolveRoute('TopRatedMovies', params))
   }
 
   return (

@@ -28,7 +28,7 @@ const NowPlaying: NextPage = () => {
       sortBy: selectedValue,
     }
 
-    router.replace(resolveRoute('Movies', params))
+    router.replace(resolveRoute('NowPlayingMovies', params))
   }
 
   return (
