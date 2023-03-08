@@ -49,7 +49,7 @@ function TopRatedMovies(props: ComponentProps) {
   if (isError) return null
   if (isLoading) {
     return (
-      <div className="grid gap-4 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <div className="grid gap-4 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 mt-4">
         {range(20).map((key) => (
           <VerticalMovieLoader key={key} />
         ))}
