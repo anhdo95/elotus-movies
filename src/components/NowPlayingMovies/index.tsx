@@ -49,14 +49,10 @@ function NowPlayingMovies(props: ComponentProps) {
 
   const isListView = props.segmentedControl === SegmentedType.ListView
 
-  console.log('data', data)
-
   async function handleRefresh() {
     // queryClient.invalidateQueries([queryKeys.nowPlayingMovies], { exact: false })
     queryClient.resetQueries([queryKeys.nowPlayingMovies])
   }
-
-  console.log('props.', props.segmentedControl)
 
   return (
     <PullToRefresh onRefresh={handleRefresh}>
@@ -65,7 +61,7 @@ function NowPlayingMovies(props: ComponentProps) {
           'mt-4 grid',
           isListView
             ? 'gap-4 md:grid-cols-2'
-            : 'gap-2 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+            : 'gap-4 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
         )}
         loadMore={() => !isFetchingNextPage && fetchNextPage()}
         hasMore={hasNextPage}

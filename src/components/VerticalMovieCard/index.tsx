@@ -6,7 +6,7 @@ import { getImageUrl } from '@/utils/helper'
 function VerticalMovieCard(movie: Movie) {
   return (
     <Link href={`/movies/${movie.id}`}>
-      <a className="w-100 shadow-lg border rounded-md duration-300 hover:shadow-sm">
+      <a className="flex flex-col group w-100 border rounded-md shadow-md hover:shadow-xl">
         <Image
           src={getImageUrl(movie.posterPath)}
           // fallbackSrc={DefaultImage.src}
@@ -18,9 +18,11 @@ function VerticalMovieCard(movie: Movie) {
               (max-width: 768px) 25vw,
               20vw"
         />
-        <div className="flex flex-col mt-2 py-4 mx-4">
-          <h3 className="block text-gray-900">{movie.title}</h3>
-          <span className="block text-gray-400 text-sm">
+        <div className="flex flex-grow flex-col px-4 py-6 transition-colors duration-300 group-hover:bg-111111">
+          <h3 className="block text-gray-900 group-hover:text-white">
+            {movie.title}
+          </h3>
+          <span className="block text-gray-400 group-hover:text-white text-sm">
             {movie.releaseDate}
           </span>
         </div>

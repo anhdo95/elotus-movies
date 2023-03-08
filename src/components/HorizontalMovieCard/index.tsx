@@ -9,7 +9,7 @@ import styles from './index.module.scss'
 function HorizontalMovieCard(movie: Movie) {
   return (
     <Link href={`/movies/${movie.id}`}>
-      <a className="w-full overflow-hidden shadow-lg grid xs:grid-cols-5 md:grid-cols-2 xl:grid-cols-5">
+      <a className="group w-full overflow-hidden shadow-md grid xs:grid-cols-5 md:grid-cols-2 xl:grid-cols-5 hover:shadow-xl">
         <div className="xs:col-span-2 md:col-span-1 xl:col-span-2">
           <Image
             src={getImageUrl(movie.posterPath)}
@@ -22,13 +22,13 @@ function HorizontalMovieCard(movie: Movie) {
               33vw"
           />
         </div>
-        <div className="xs:col-span-3 md:col-span-1 xl:col-span-3 flex flex-col px-4 lg:px-8 py-4 bg-color-333">
+        <div className="xs:col-span-3 md:col-span-1 xl:col-span-3 flex flex-col px-4 lg:px-8 py-4 bg-color-333 transition-colors duration-300 group-hover:bg-111111 group-hover:text-white">
           <h3 className="text-3xl md:text-xl">{movie.title}</h3>
           <span className="text-sm mb-4">{movie.releaseDate}</span>
           <div className="flex-grow">
             <p
               className={classNames(
-                'text-xl md:text-base lg:text-base  leading-snug truncate-overflow',
+                'text-xl md:text-base lg:text-base leading-snug truncate-overflow',
                 styles.overview
               )}
             >
