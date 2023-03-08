@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 type ComponentProps = {
   className?: string
@@ -7,7 +7,7 @@ type ComponentProps = {
 function Spinner(props: ComponentProps) {
   return (
     <svg
-      className={classnames(
+      className={classNames(
         'animate-spin h-5 w-5 text-indigo-600',
         props.className
       )}

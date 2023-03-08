@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import classnames from 'classnames'
+import classNames from 'classnames'
 import { throttle } from 'lodash-es'
 
 const routes = [
@@ -28,7 +28,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={classnames('sticky top-0 w-full bg-white z-header', {
+      className={classNames('sticky top-0 w-full bg-white z-header', {
         'shadow-lg': scrolled,
         'border-b': !scrolled,
       })}

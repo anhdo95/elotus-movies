@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 export type SelectItem = {
   value: number | string
@@ -19,7 +19,7 @@ function SelectMenus(props: ComponentProps) {
 
   return (
     <div
-      className={classnames(
+      className={classNames(
         'cursor-pointer relative max-w-md',
         props.className
       )}
